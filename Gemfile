@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem "groundwork-style", github: "buildgroundwork/groundwork-style"
+gem "srp-style", github: "srpatx/srp-style"
 
 gemspec
 

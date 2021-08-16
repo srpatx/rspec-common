@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This acts as a stand-in for the Rack middleware that catches exceptions and
 # returns appropriate HTTP responses.  Since that does not exist in the test
 # environment, controller specs will emit any exceptions thrown.

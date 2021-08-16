@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # A memory-only service for ActiveStorage.  Any "uploaded" files live in memory
 # and can be accessed by their given key.
 #

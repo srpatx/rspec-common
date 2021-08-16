@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "rspec/common/extensions"
 require "rspec/common/helpers"
 require "rspec/common/matchers"

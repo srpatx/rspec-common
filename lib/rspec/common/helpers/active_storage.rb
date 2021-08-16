@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Methods for use in specs to create and manipulate ActiveStorage entities.  To
 # use, add the following to your rails_helper.rb for RSpec:
 #

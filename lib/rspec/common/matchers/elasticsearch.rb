@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 %i[create update delete].each do |action|
   RSpec::Matchers.define :"#{action}_elasticsearch_index_with" do |**params|
     match do |block|

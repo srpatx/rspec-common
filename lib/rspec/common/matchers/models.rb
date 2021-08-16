@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # rubocop:disable Metrics/BlockLength
 RSpec::Matchers.define :create_record do |model_class|
   chain :where do |attributes|

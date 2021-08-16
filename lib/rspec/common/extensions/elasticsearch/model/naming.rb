@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 if defined?(Elasticsearch::Model::Naming)
   module Elasticsearch::Model::Naming::ClassMethods
     private

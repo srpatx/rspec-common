@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 RSpec::Matchers.define :respond_with_status do |expected_status|
   match do |action|
     action.call

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # rubocop:disable Metrics/BlockLength
 RSpec::Matchers.define :send_rollbar_report do |level|
   chain :with_exception_class do |exception_class|

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 RSpec.shared_examples_for "an action that requires authentication" do |redirect: :login_path|
   context "with no authenticated user" do
     before { sign_out(:user) }

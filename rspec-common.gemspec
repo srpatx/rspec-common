@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "Helpful shared examples and matchers for Rails."
   spec.homepage      = "https://github.com/srpatx/rspec-common"
   spec.license       = "MIT"
-  spec.required_ruby_version = Gem::Requirement.new(">= 3.0.0")
+  spec.required_ruby_version = Gem::Requirement.new(">= 3.1.0")
 
   spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 

@@ -26,6 +26,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency("rack-test", "~> 1.1")
   spec.add_dependency("rspec-collection_matchers", "~> 1.2")
   spec.add_dependency("rspec-core", "~> 3.10")
+  # rspec-collection_matchers break with rspec-expectations 3.11
+  spec.add_dependency("rspec-expectations", "~> 3.0", "< 3.11")
   spec.add_dependency("rspec-rails", "~> 5.1")
 
   spec.add_development_dependency("rake")

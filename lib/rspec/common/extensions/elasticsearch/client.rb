@@ -63,4 +63,3 @@ def elasticsearch_return(*args, **kwargs)
   Doubles::Elasticsearch::Client.return(*args, **kwargs)
 end
 # rubocop:enable Lint/SuppressedException
-

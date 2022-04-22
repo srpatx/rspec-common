@@ -30,4 +30,3 @@ module RSpec::Common
     end
   end
 end
-

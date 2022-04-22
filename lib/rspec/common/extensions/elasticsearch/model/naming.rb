@@ -7,4 +7,3 @@ if defined?(Elasticsearch::Model::Naming)
     end
   end
 end
-

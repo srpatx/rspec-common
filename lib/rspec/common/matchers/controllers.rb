@@ -84,4 +84,3 @@ RSpec::Matchers.define :set_flash do |type|
     end
   end
 end
-

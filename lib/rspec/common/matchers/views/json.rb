@@ -206,4 +206,3 @@ define_method :have_json_element do |*elements|
   JsonElementMatcher.new(JsonMatcherRoot.instance, *elements)
 end
 # rubocop:enable Naming/PredicateName
-

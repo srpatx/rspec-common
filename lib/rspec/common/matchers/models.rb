@@ -49,4 +49,3 @@ RSpec::Matchers.define :create_record do |model_class|
   end
 end
 # rubocop:enable Metrics/BlockLength
-

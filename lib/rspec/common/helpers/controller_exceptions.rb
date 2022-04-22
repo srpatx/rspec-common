@@ -35,4 +35,3 @@ module RSpec::Common
   end
 end
 # rubocop:enable Metrics/MethodLength
-

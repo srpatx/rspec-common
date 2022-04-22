@@ -33,4 +33,3 @@ begin
 rescue LoadError
 end
 # rubocop:enable Lint/SuppressedException
-

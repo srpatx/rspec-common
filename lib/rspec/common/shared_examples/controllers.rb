@@ -57,4 +57,3 @@ RSpec.shared_examples_for "an action that requires" do |*resources|
     end
   end
 end
-

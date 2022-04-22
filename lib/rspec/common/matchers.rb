@@ -13,4 +13,3 @@ RSpec::Matchers.define :satisfy do
     "expected action to satisfy expectation"
   end
 end
-

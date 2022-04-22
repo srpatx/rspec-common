@@ -46,4 +46,3 @@ RSpec::Matchers.define :send_rollbar_report do |level|
   end
 end
 # rubocop:enable Metrics/BlockLength
-

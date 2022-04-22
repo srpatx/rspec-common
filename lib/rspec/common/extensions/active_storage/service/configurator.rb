@@ -6,4 +6,3 @@ module ActiveStorage
     prepend ::RSpec::Common::Helpers::ActiveStorage::Configurator
   end
 end
-

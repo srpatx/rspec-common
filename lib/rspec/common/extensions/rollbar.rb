@@ -27,4 +27,3 @@ if defined?(Rollbar)
     end
   end
 end
-

@@ -96,4 +96,3 @@ RSpec::Matchers.define :search_elasticsearch_index do |index|
   end
 end
 # rubocop:enable Metrics/BlockLength
-

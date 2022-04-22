@@ -12,7 +12,7 @@ begin
           end
 
           def calls
-            @calls ||= {}
+            @calls ||= Hash.new([])
           end
 
           def return(**kwargs)
@@ -27,28 +27,24 @@ begin
         def initialize(*args); end
 
         def index(**params)
-          self.class.calls[:create] ||= []
           self.class.calls[:create] << params
 
           nil
         end
 
         def search(params)
-          self.class.calls[:search] ||= []
           self.class.calls[:search] << params
 
           self.class.response_builder.response
         end
 
         def bulk(params)
-          self.class.calls[:bulk] ||= []
           self.class.calls[:bulk] << params
 
           { "errors" => false }
         end
 
         def method_missing(method, *_args, **params, &_block)
-          self.class.calls[method] ||= []
           self.class.calls[method] << params
 
           nil

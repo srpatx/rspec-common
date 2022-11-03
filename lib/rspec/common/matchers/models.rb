@@ -1,5 +1,7 @@
 # rubocop:disable Metrics/BlockLength
 RSpec::Matchers.define :create_record do |model_class|
+  supports_block_expectations
+
   chain :where do |attributes|
     raise ArgumentError unless attributes.is_a?(Hash)
 

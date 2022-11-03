@@ -1,5 +1,7 @@
 %i[create update delete].each do |action|
   RSpec::Matchers.define :"#{action}_elasticsearch_index_with" do |**params|
+    supports_block_expectations
+
     match do |block|
       Doubles::Elasticsearch::Client.reset!
 
@@ -21,6 +23,8 @@
 end
 
 RSpec::Matchers.define :bulk_update_elasticsearch_index_with do |records, index: , id_attr: :id|
+  supports_block_expectations
+
   match do |block|
     Doubles::Elasticsearch::Client.reset!
 

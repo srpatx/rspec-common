@@ -1,4 +1,6 @@
 RSpec::Matchers.define :respond_with_status do |expected_status|
+  supports_block_expectations
+
   match do |action|
     action.call
     expect(response).to have_http_status(expected_status)
@@ -40,6 +42,8 @@ define_method :respond_with_redirect_to do |*target_paths, &target_path_block|
 end
 
 RSpec::Matchers.define :respond_with_template do |template_name|
+  supports_block_expectations
+
   match do |block|
     block.call
     expect(response).to have_rendered(template_name)
@@ -48,6 +52,8 @@ RSpec::Matchers.define :respond_with_template do |template_name|
 end
 
 RSpec::Matchers.define :assign do |*vars|
+  supports_block_expectations
+
   match do |block|
     block.call
     vars.all? { |var| assigns.symbolize_keys[var] }
@@ -55,6 +61,8 @@ RSpec::Matchers.define :assign do |*vars|
 end
 
 RSpec::Matchers.define :set_flash do |type|
+  supports_block_expectations
+
   chain :to do |message|
     @expected_message = message
   end

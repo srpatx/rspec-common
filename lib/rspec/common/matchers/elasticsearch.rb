@@ -48,7 +48,6 @@ RSpec::Matchers.define :bulk_update_elasticsearch_index_with do |records, index:
   end
 end
 
-# rubocop:disable Metrics/BlockLength
 RSpec::Matchers.define :search_elasticsearch_index do |index|
   chain :with_query do |query|
     @query = query
@@ -99,4 +98,3 @@ RSpec::Matchers.define :search_elasticsearch_index do |index|
     message
   end
 end
-# rubocop:enable Metrics/BlockLength

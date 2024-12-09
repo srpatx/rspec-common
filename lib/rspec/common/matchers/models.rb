@@ -1,4 +1,3 @@
-# rubocop:disable Metrics/BlockLength
 RSpec::Matchers.define :create_record do |model_class|
   supports_block_expectations
 
@@ -50,4 +49,3 @@ RSpec::Matchers.define :create_record do |model_class|
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

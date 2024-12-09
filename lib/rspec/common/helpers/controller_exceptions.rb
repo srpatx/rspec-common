@@ -8,7 +8,6 @@
 #
 #   config.before { config.include(RSpec::Common::Helpers::ControllerExceptions, type: :controller) }
 
-# rubocop:disable Metrics/MethodLength
 module RSpec::Common
   module Helpers
     module ControllerExceptions
@@ -34,4 +33,3 @@ module RSpec::Common
     end
   end
 end
-# rubocop:enable Metrics/MethodLength

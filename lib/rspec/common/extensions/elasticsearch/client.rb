@@ -1,4 +1,3 @@
-# rubocop:disable Lint/SuppressedException
 begin
   require "elasticsearch/model"
 
@@ -63,4 +62,3 @@ end
 def elasticsearch_return(*args, **kwargs)
   Doubles::Elasticsearch::Client.return(*args, **kwargs)
 end
-# rubocop:enable Lint/SuppressedException

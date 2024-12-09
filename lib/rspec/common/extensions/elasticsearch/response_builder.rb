@@ -1,4 +1,3 @@
-# rubocop:disable Lint/SuppressedException
 begin
   require "elasticsearch/model"
 
@@ -32,4 +31,3 @@ begin
   end
 rescue LoadError
 end
-# rubocop:enable Lint/SuppressedException

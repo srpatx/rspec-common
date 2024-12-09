@@ -23,12 +23,11 @@ Gem::Specification.new do |spec|
   spec.files = Dir.chdir(File.expand_path(__dir__)) { `git ls-files -z`.split("\x0") }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency("rack-test", "~> 1.1")
-  spec.add_dependency("rspec-collection_matchers", "~> 1.2")
-  spec.add_dependency("rspec-core", "~> 3.10")
-  # rspec-collection_matchers break with rspec-expectations 3.11
-  spec.add_dependency("rspec-expectations", "~> 3.0", "< 3.11")
-  spec.add_dependency("rspec-rails", "~> 5.1")
+  spec.add_dependency("rack-test")
+  spec.add_dependency("rspec-collection_matchers")
+  spec.add_dependency("rspec-core")
+  spec.add_dependency("rspec-expectations")
+  spec.add_dependency("rspec-rails")
 
   spec.add_development_dependency("rake")
   spec.add_development_dependency("rubocop")

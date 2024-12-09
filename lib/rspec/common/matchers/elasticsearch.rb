@@ -22,7 +22,7 @@
   end
 end
 
-RSpec::Matchers.define :bulk_update_elasticsearch_index_with do |records, index: , id_attr: :id|
+RSpec::Matchers.define :bulk_update_elasticsearch_index_with do |records, index:, id_attr: :id|
   supports_block_expectations
 
   match do |block|
@@ -36,7 +36,7 @@ RSpec::Matchers.define :bulk_update_elasticsearch_index_with do |records, index:
       # Elasticsearch prefixes index names with "test_" in the test environment only.
       index: "test_#{index}",
       body: records.collect do |record|
-        { index: { _id: record.public_send(id_attr), data: record.to_elasticsearch } }
+        {index: {_id: record.public_send(id_attr), data: record.to_elasticsearch}}
       end
     }
 

@@ -24,7 +24,8 @@ begin
           end
         end
 
-        def initialize(*args); end
+        def initialize(*args)
+        end
 
         def index(**params)
           self.class.calls[:create] << params
@@ -41,7 +42,7 @@ begin
         def bulk(params)
           self.class.calls[:bulk] << params
 
-          { "errors" => false }
+          {"errors" => false}
         end
 
         def method_missing(method, *_args, **params, &_block)

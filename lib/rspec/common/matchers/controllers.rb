@@ -84,7 +84,7 @@ RSpec::Matchers.define :set_flash do |type|
   end
 
   failure_message do |_actual|
-    message = "Expected flash#{'.now' if @now}[#{type}] to "
+    message = "Expected flash#{".now" if @now}[#{type}] to "
     if @expected_message
       "#{message} match '#{@expected_message}', but was '#{flash[type]}'"
     else

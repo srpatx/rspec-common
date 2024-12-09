@@ -3,7 +3,7 @@ if defined?(Elasticsearch::Model::Naming)
     private
 
     def default_index_name
-      "test_#{model_name.collection.tr('/', '-')}"
+      "test_#{model_name.collection.tr("/", "-")}"
     end
   end
 end

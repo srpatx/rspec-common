@@ -14,8 +14,8 @@ begin
         def response
           response = {
             "hits" => {
-              "total" => { "value" => total_count || ids.size },
-              "hits" => ids.collect { |id| { "_id" => id } }
+              "total" => {"value" => total_count || ids.size},
+              "hits" => ids.collect { |id| {"_id" => id} }
             }
           }
 

@@ -4,9 +4,6 @@ require "bundler/setup"
 require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new(:spec)
 
-require "rubocop/rake_task"
-RuboCop::RakeTask.new do |t|
-  t.options = %w[--display-cop-names]
-end
+require "standard/rake"
 
-task default: %w[spec rubocop]
+task default: %w[spec standard]

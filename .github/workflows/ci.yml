@@ -1,0 +1,21 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+      - github-actions
+  pull_request:
+jobs:
+  specs:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out source
+      uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.3
+        bundler-cache: true
+    - name: Run rake
+      run: bundle exec rake
+

@@ -13,7 +13,8 @@ module ActiveStorage
   class Service::MemoryService < Service
     # We explicity do NOT want the super behavior from ActiveStorage
     # rubocop:disable Lint/MissingSuper
-    def initialize(**config); end
+    def initialize(**config)
+    end
     # rubocop:enable Lint/MissingSuper
 
     def reset!
@@ -68,7 +69,7 @@ module ActiveStorage
       end
     end
 
-    def url(key, filename: , **)
+    def url(key, filename:, **)
       instrument(:url, key: key) do |payload|
         payload[:url] = "http://test.host/#{filename}"
       end

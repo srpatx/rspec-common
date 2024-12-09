@@ -49,7 +49,7 @@ class JsonElementMatcher
 
   def failure_message
     message = parent.failure_message
-    message += " with element #{keys.join('/')}"
+    message += " with element #{keys.join("/")}"
     message += " with value '#{value}'" if expecting_value
     message
   end

@@ -67,7 +67,6 @@ class JsonElementMatcher
     hash.dig(*keys) if hash.is_a?(Hash)
   end
 
-  # rubocop:disable Naming/PredicateName
   def has_keys?
     hash = parent.results_for(actual)
 
@@ -80,7 +79,6 @@ class JsonElementMatcher
       end
     end
   end
-  # rubocop:enable Naming/PredicateName
 end
 
 class JsonArrayMatcher
@@ -201,8 +199,6 @@ define_method :be_json_array do
   JsonArrayMatcher.new(JsonMatcherRoot.instance)
 end
 
-# rubocop:disable Naming/PredicateName
 define_method :have_json_element do |*elements|
   JsonElementMatcher.new(JsonMatcherRoot.instance, *elements)
 end
-# rubocop:enable Naming/PredicateName

@@ -18,4 +18,10 @@ jobs:
         bundler-cache: true
     - name: Run rake
       run: bundle exec rake
-
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lint with Standard
+        uses: standardrb/standard-ruby-action@v1
+        with:
+          autofix: false

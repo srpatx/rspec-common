@@ -1,4 +1,3 @@
-# rubocop:disable Metrics/BlockLength
 RSpec::Matchers.define :send_rollbar_report do |level|
   supports_block_expectations
 
@@ -47,4 +46,3 @@ RSpec::Matchers.define :send_rollbar_report do |level|
     message
   end
 end
-# rubocop:enable Metrics/BlockLength

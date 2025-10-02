@@ -1,5 +1,11 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :respond_with_status do |expected_status|
   supports_block_expectations
+
+  def supports_value_expectations?
+    true
+  end
 
   match do |action|
     action.call
@@ -32,7 +38,7 @@ class RespondWithRedirectMatcher
   end
 
   def description
-    "respond with redirect"
+    'respond with redirect'
   end
 end
 
@@ -44,6 +50,10 @@ end
 RSpec::Matchers.define :respond_with_template do |template_name|
   supports_block_expectations
 
+  def supports_value_expectations?
+    true
+  end
+
   match do |block|
     block.call
     expect(response).to have_rendered(template_name)
@@ -51,8 +61,27 @@ RSpec::Matchers.define :respond_with_template do |template_name|
   end
 end
 
+RSpec::Matchers.define :respond_with_text do |text|
+  def supports_value_expectations?
+    true
+  end
+
+  match do |block|
+    block.call
+    response.body == text
+  end
+
+  failure_message do
+    "expected response body text to be '#{text}' but was '#{response.body}'"
+  end
+end
+
 RSpec::Matchers.define :assign do |*vars|
   supports_block_expectations
+
+  def supports_value_expectations?
+    true
+  end
 
   match do |block|
     block.call
@@ -62,6 +91,10 @@ end
 
 RSpec::Matchers.define :set_flash do |type|
   supports_block_expectations
+
+  def supports_value_expectations?
+    true
+  end
 
   chain :to do |message|
     @expected_message = message
@@ -84,7 +117,7 @@ RSpec::Matchers.define :set_flash do |type|
   end
 
   failure_message do |_actual|
-    message = "Expected flash#{".now" if @now}[#{type}] to "
+    message = "Expected flash#{'.now' if @now}[#{type}] to "
     if @expected_message
       "#{message} match '#{@expected_message}', but was '#{flash[type]}'"
     else

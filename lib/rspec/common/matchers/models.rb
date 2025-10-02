@@ -1,14 +1,20 @@
+# frozen_string_literal: true
+
 # rubocop:disable Metrics/BlockLength
 RSpec::Matchers.define :create_record do |model_class|
   supports_block_expectations
+
+  def supports_value_expectations?
+    true
+  end
 
   chain :where do |attributes|
     raise ArgumentError unless attributes.is_a?(Hash)
 
     @proc_attributes, @value_attributes =
       attributes
-        .partition { |_, v| v.is_a?(Proc) }
-        .collect(&:to_h)
+      .partition { |_, v| v.is_a?(Proc) }
+      .collect(&:to_h)
   end
 
   match do |action|
@@ -43,11 +49,31 @@ RSpec::Matchers.define :create_record do |model_class|
     relation.select do |record|
       @proc_attributes.all? do |name, block|
         expected = block.call
-        methods = name.to_s.split(".")
+        methods = name.to_s.split('.')
         actual = methods.inject(record) { |receiver, method| receiver.public_send(method) }
         actual == expected
       end
     end
+  end
+end
+
+RSpec::Matchers.define :destroy_record do |model|
+  def supports_value_expectations?
+    true
+  end
+
+  match do |action|
+    action.call
+
+    model.class.where(id: model).none?
+  end
+
+  failure_message do
+    "expected action to destroy #{model}, but did not"
+  end
+
+  failure_message_when_negated do
+    "expected action to not destroy #{model}, but the record was destroyed"
   end
 end
 # rubocop:enable Metrics/BlockLength

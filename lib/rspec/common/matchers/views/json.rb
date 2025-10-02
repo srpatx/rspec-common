@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module JsonMatcherChains
   def initialize(parent, *)
     @parent = parent
@@ -5,8 +7,8 @@ module JsonMatcherChains
 
   attr_reader :parent
 
-  def containing(&block)
-    JsonContainsMatcher.new(self, &block)
+  def containing(&)
+    JsonContainsMatcher.new(self, &)
   end
 
   def of_length(length)
@@ -23,6 +25,10 @@ module JsonMatcherChains
 
   def results_for(json)
     @results_for ||= generate_results_for(json)
+  end
+
+  def failure_message_when_negated
+    failure_message(negated: true)
   end
 end
 
@@ -47,15 +53,16 @@ class JsonElementMatcher
     expecting_value ? has_keys? && match == value : match
   end
 
-  def failure_message
-    message = parent.failure_message
-    message += " with element #{keys.join("/")}"
-    message += " with value '#{value}'" if expecting_value
+  def failure_message(negated: false)
+    preposition = negated ? 'without' : 'with'
+    message = parent.failure_message(negated:)
+    message += " #{preposition} element #{keys.join('/')}"
+    message += " #{preposition} value '#{value}'" if expecting_value
     message
   end
 
   def description
-    "have JSON element"
+    'have JSON element'
   end
 
   private
@@ -72,7 +79,7 @@ class JsonElementMatcher
     hash = parent.results_for(actual)
 
     keys.inject(true) do |memo, key|
-      if memo && hash.has_key?(key)
+      if memo && hash.key?(key)
         hash = hash[key]
         true
       else
@@ -90,12 +97,12 @@ class JsonArrayMatcher
     results_for(json)
   end
 
-  def failure_message
-    "#{parent.failure_message} be array"
+  def failure_message(negated: false)
+    "#{parent.failure_message(negated:)}#{' not to' if negated} be array"
   end
 
   def description
-    "be JSON array"
+    'be JSON array'
   end
 
   private
@@ -118,12 +125,12 @@ class JsonLengthMatcher
     results_for(json)&.length == length
   end
 
-  def failure_message
-    parent.failure_message + " with length #{length}"
+  def failure_message(negated: false)
+    parent.failure_message(negated:) + " with length #{length}"
   end
 
   def description
-    "have length"
+    'have length'
   end
 
   private
@@ -148,12 +155,12 @@ class JsonContainsMatcher
     results_for(json)
   end
 
-  def failure_message
-    "#{parent.failure_message} containing a specific element"
+  def failure_message(negated: false)
+    "#{parent.failure_message(negated:)}#{' not' if negated} containing a specific element"
   end
 
   def description
-    "contain JSON element"
+    'contain JSON element'
   end
 
   private
@@ -172,8 +179,8 @@ class JsonMatcherAnd
     parent.parent.results_for(json)
   end
 
-  def failure_message
-    "#{parent.failure_message} and"
+  def failure_message(negated: false)
+    "#{parent.failure_message(negated:)} and"
   end
 end
 
@@ -184,17 +191,15 @@ class JsonMatcherRoot
     end
   end
 
-  attr_reader :failure_message
+  def failure_message(**)
+    'expected a JSON response'
+  end
 
   def results_for(json)
     JSON.parse(json)
   end
 
-  private
-
-  def initialize
-    @failure_message = "expected a JSON response"
-  end
+  private :initialize
 end
 
 define_method :be_json_array do

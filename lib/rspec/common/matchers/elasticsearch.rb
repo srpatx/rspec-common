@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 %i[create update delete].each do |action|
   RSpec::Matchers.define :"#{action}_elasticsearch_index_with" do |**params|
     supports_block_expectations
@@ -36,7 +38,7 @@ RSpec::Matchers.define :bulk_update_elasticsearch_index_with do |records, index:
       # Elasticsearch prefixes index names with "test_" in the test environment only.
       index: "test_#{index}",
       body: records.collect do |record|
-        {index: {_id: record.public_send(id_attr), data: record.to_elasticsearch}}
+        { index: { _id: record.public_send(id_attr), data: record.to_elasticsearch } }
       end
     }
 
@@ -64,7 +66,7 @@ RSpec::Matchers.define :search_elasticsearch_index do |index|
   end
 
   match do |_results|
-    @search_calls = Doubles::Elasticsearch::Client.calls[:search]
+    @search_calls = Doubles::Elasticsearch::Client.calls[:search] || []
     matching = @search_calls.select { |call| call[:index] == index.to_s }
 
     if @query == :none
@@ -74,7 +76,7 @@ RSpec::Matchers.define :search_elasticsearch_index do |index|
     end
 
     if @aggregations
-      matching = matching.select { |call| call[:body].has_key?(:aggregations) }
+      matching = matching.select { |call| call[:body].key?(:aggregations) }
       @aggregations.each do |name, attributes|
         matching = matching.select { |call| call[:body][:aggregations][name] == attributes }
       end
